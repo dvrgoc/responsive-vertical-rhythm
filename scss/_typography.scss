@@ -5,17 +5,9 @@
             position: left top;
         }
 
-        @include bpMaxMobile() {
-            background-size: 100% $base-line-height-mobile;
-        }
-
-        //@include bpOnTablet() {
-        //    background-size: 100% $base-line-height-tablet;
-        //}
-        //
-        //@include bpMinDesktop() {
-        //    background-size: 100% $base-line-height-desktop;
-        //}
+        @include bpMaxMobile()  { background-size: 100% $base_line_height_mobile; }
+        @include bpOnTablet()   { background-size: 100% $base_line_height_tablet; }
+        @include bpMinDesktop() { background-size: 100% $base_line_height_desktop; }
     }
 }
 
@@ -26,5 +18,34 @@
     h4 { @include setRhythm(mobile, 28px, 2); }
     h5 { @include setRhythm(mobile, 24px, 2); }
     h6 { @include setRhythm(mobile, 20px, 2); }
-    p { @include setRhythm(mobile, 20px, 1); }
+    p { @include setRhythm(mobile, 16px, 1); }
+}
+
+@include bpOnTablet() {
+    h1 { @include setRhythm(tablet, 70px, 3); }
+    h2 { @include setRhythm(tablet, 63px, 2); }
+    h3 { @include setRhythm(tablet, 56px, 2); }
+    h4 { @include setRhythm(tablet, 49px, 2); }
+    h5 { @include setRhythm(tablet, 42px, 2); }
+    h6 { @include setRhythm(tablet, 35px, 2); }
+    p { @include setRhythm(tablet, 28px, 1); }
+}
+
+@include bpMinDesktop() {
+    h1 { @include setRhythm(desktop, 84px, 2); }
+    h2 { @include setRhythm(desktop, 72px, 2); }
+    h3 { @include setRhythm(desktop, 60px, 2); }
+    h4 { @include setRhythm(desktop, 48px, 2); }
+    h5 { @include setRhythm(desktop, 36px, 2); }
+    h6 { @include setRhythm(desktop, 24px, 1); }
+
+    p {
+        @include setRhythm(desktop, 24px, 1);
+        //@include setMargin((1, 0, 2));
+        ////@include setPadding((1, 0, 1));
+        //@include setPaddingWithBorder(
+        //                        (1, 0, 0.5),
+        //                        ((0, 0, 2px), solid, red)
+        //);
+    }
 }

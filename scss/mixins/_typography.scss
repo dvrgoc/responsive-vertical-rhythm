@@ -15,6 +15,14 @@
         $final_font_size: $base_font_size_mobile;
         $final_line_height: $base_line_height_mobile;
     }
+    @if($mq == tablet) {
+        $final_font_size: $base_font_size_tablet;
+        $final_line_height: $base_line_height_tablet;
+    }
+    @if($mq == desktop) {
+        $final_font_size: $base_font_size_desktop;
+        $final_line_height: $base_line_height_desktop;
+    }
 
     font-size: $font_size;
     line-height: #{$final_line_height * $how_many_lines};
@@ -24,8 +32,8 @@
             font-size: ($font_size / $final_font_size) * ($final_line_height / $final_font_size) * $normalize_font_value * 1rem;
             line-height: stripUnit($final_line_height / $normalize_line_height_value) * $how_many_lines * 1rem;
         } @else {
-            font-size: ($font_size / $final_font_size) * ($final_line_height / $final_font_size) * 1rem;
-            line-height: $final_line_height / $final_font_size * $how_many_lines * 1rem;
+            font-size: $font_size / $font_size_default * 1rem;
+            line-height: $final_line_height / $font_size_default * $how_many_lines * 1rem;
         }
     }
 }
