@@ -1,0 +1,30 @@
+@mixin showVerticalRhythmOn($selector) {
+    #{$selector} {
+        background: {
+            image: linear-gradient(to bottom, black 5%, white 5%);
+            position: left top;
+        }
+
+        @include bpMaxMobile() {
+            background-size: 100% $base-line-height-mobile;
+        }
+
+        //@include bpOnTablet() {
+        //    background-size: 100% $base-line-height-tablet;
+        //}
+        //
+        //@include bpMinDesktop() {
+        //    background-size: 100% $base-line-height-desktop;
+        //}
+    }
+}
+
+@include bpMaxMobile() {
+    h1 { @include setRhythm(mobile, 40px, 3); }
+    h2 { @include setRhythm(mobile, 36px, 2); }
+    h3 { @include setRhythm(mobile, 32px, 2); }
+    h4 { @include setRhythm(mobile, 28px, 2); }
+    h5 { @include setRhythm(mobile, 24px, 2); }
+    h6 { @include setRhythm(mobile, 20px, 2); }
+    p { @include setRhythm(mobile, 20px, 1); }
+}

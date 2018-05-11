@@ -1,0 +1,36 @@
+// default browser font size
+$font_size_default: 16px;
+// scale everything to 10px
+$font_size_scaled: 10px;
+
+/////////
+$base_font_size: if($normalize_html, $font_size_scaled, $font_size_default);
+$html_font_size: if($normalize_html, $font_size_scaled/$font_size_default*100%, 1);
+// (10px / 16px) * 100% = 62.5%
+
+// normalize html
+$normalize_html_value: if($normalize_html, $base_font_size, 1);
+$normalize_font_value: $font_size_default / $font_size_scaled;
+$normalize_line_height_value: 10;
+
+
+/* breakpoint variables - start */
+$bp_phone_end: 539px;
+
+$bp_tablet_start: $bp_phone_end + 1;
+$bp_tablet_end: 1023px;
+
+$bp_desktop_start: $bp_tablet_end + 1;
+/* breakpoint variables - start */
+
+
+/* vertical rhtyhm variables - start */
+$base_font_size_mobile: 16px !default; // The default font size for all text in pixels
+$base_line_height_mobile: 24px !default; // The distance between text baselines (vertical rhythm) in pixels.
+
+$base_font_size_tablet: 21px !default;
+$base_line_height_tablet: 28px !default;
+
+$base_font_size_desktop: 24px !default;
+$base_line_height_desktop: 36px !default;
+/* vertical rhtyhm variables - end */

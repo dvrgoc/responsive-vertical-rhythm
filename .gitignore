@@ -1,0 +1,4 @@
+# PHP Storm specific
+.idea
+# npm packages folder
+node_modules

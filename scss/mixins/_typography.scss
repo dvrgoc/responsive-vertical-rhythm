@@ -1,0 +1,46 @@
+// https://css-tricks.com/snippets/sass/strip-unit-function/
+@function stripUnit($value) {
+    @if type-of($value) == 'number' and not unitless($value) {
+        @return $value / ($value * 0 + 1);
+    }
+
+    @return $value;
+}
+
+@mixin setRhythm($mq, $font_size, $how_many_lines: 1) {
+    $final_font_size: 0;
+    $final_line_height: 0;
+
+    @if ($mq == mobile) {
+        $final_font_size: $base_font_size_mobile;
+        $final_line_height: $base_line_height_mobile;
+    }
+
+    font-size: $font_size;
+    line-height: #{$final_line_height * $how_many_lines};
+
+    @if ($use_rem_values == true) {
+        @if ($normalize_html == true) {
+            font-size: ($font_size / $final_font_size) * ($final_line_height / $final_font_size) * $normalize_font_value * 1rem;
+            line-height: stripUnit($final_line_height / $normalize_line_height_value) * $how_many_lines * 1rem;
+        } @else {
+            font-size: ($font_size / $final_font_size) * ($final_line_height / $final_font_size) * 1rem;
+            line-height: $final_line_height / $final_font_size * $how_many_lines * 1rem;
+        }
+    }
+}
+
+@mixin setFontSizeOnMobile($font_size, $how_many_lines: 1) {
+    font-size: $font_size;
+    line-height: #{$base_line_height_mobile * $how_many_lines};
+
+    @if ($use_rem_values == true) {
+        @if ($normalize_html == true) {
+            font-size: ($font_size / $base_font_size_mobile) * ($base_line_height_mobile / $base_font_size_mobile) * $normalize_font_value * 1rem;
+            line-height: stripUnit($base_line_height_mobile / $normalize_line_height_value) * $how_many_lines * 1rem;
+        } @else {
+            font-size: ($font_size / $base_font_size_mobile) * ($base_line_height_mobile / $base_font_size_mobile) * 1rem;
+            line-height: $base_line_height_mobile / $base_font_size_mobile * $how_many_lines * 1rem;
+        }
+    }
+}

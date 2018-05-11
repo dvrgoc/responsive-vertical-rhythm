@@ -1,0 +1,30 @@
+@if ($debugVerticalRhythm == true) {
+    @include showVerticalRhythmOn($debugElement);
+}
+
+@if ($normalize_html == true) {
+    html {
+        font-size: $html_font_size;
+    }
+}
+
+
+@include bpMaxMobile() {
+    body > div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    body > div > * {
+        flex: 50%;
+        text-align: center;
+    }
+}
+
+@include bpMinTablet() {
+    body > div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}

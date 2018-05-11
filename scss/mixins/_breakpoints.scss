@@ -1,0 +1,48 @@
+/* media query functions */
+@mixin bpMin($bp) {
+    @media all and (min-width: $bp) {
+        @content
+    }
+}
+
+@mixin bpMax($bp) {
+    @media all and (max-width: $bp) {
+        @content
+    }
+}
+
+@mixin bpMinMax($bpMin, $bpMax) {
+    @media all and (min-width: $bpMin) and (max-width: $bpMax) {
+        @content
+    }
+}
+
+@mixin bpMaxMobile() {
+    @include bpMax($bp_phone_end) {
+        @content
+    }
+}
+
+@mixin bpMinTablet() {
+    @include bpMin($bp_tablet_start) {
+        @content
+    }
+}
+
+@mixin bpOnTablet() {
+    @include bpMinMax($bp_tablet_start, $bp_tablet_end) {
+        @content
+    }
+}
+
+@mixin bpMaxTablet() {
+    @include bpMax($bp_tablet_end) {
+        @content
+    }
+}
+
+@mixin bpMinDesktop() {
+    @include bpMin($bp_desktop_start) {
+        @content
+    }
+}
