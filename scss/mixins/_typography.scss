@@ -7,22 +7,47 @@
     @return $value;
 }
 
-@mixin setRhythm($mq, $font_size, $how_many_lines: 1) {
-    $final_font_size: 0;
-    $final_line_height: 0;
+/* string functions */
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
 
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+@function getMqValue($mq, $attribute) {
     @if ($mq == mobile) {
-        $final_font_size: $base_font_size_mobile;
-        $final_line_height: $base_line_height_mobile;
+        @if ($attribute == font-size) {
+            @return $base_font_size_mobile
+        }
+        @if ($attribute == line-height) {
+            @return $base_line_height_mobile
+        }
     }
     @if($mq == tablet) {
-        $final_font_size: $base_font_size_tablet;
-        $final_line_height: $base_line_height_tablet;
+        @if ($attribute == font-size) {
+            @return $base_font_size_tablet
+        }
+        @if ($attribute == line-height) {
+            @return $base_line_height_tablet
+        }
     }
     @if($mq == desktop) {
-        $final_font_size: $base_font_size_desktop;
-        $final_line_height: $base_line_height_desktop;
+        @if ($attribute == font-size) {
+            @return $base_font_size_desktop
+        }
+        @if ($attribute == line-height) {
+            @return $base_line_height_desktop
+        }
     }
+}
+
+@mixin setRhythm($mq, $font_size, $how_many_lines: 1) {
+    $final_font_size: getMqValue($mq, font-size);
+    $final_line_height: getMqValue($mq, line-height);
 
     font-size: $font_size;
     line-height: #{$final_line_height * $how_many_lines};
@@ -38,17 +63,92 @@
     }
 }
 
-@mixin setFontSizeOnMobile($font_size, $how_many_lines: 1) {
-    font-size: $font_size;
-    line-height: #{$base_line_height_mobile * $how_many_lines};
+@mixin setSpacing($mq, $attribute, $value) {
+
+    $final_font_size: getMqValue($mq, font-size);
+    $final_line_height: getMqValue($mq, line-height);
+
+    @if (type_of($value) == number) {
+        #{$attribute}: #{$final_line_height * $value};
+    }
+    @if (type_of($value) == list) {
+        $output_list: ();
+        @each $array_value in $value {
+            $temp: nth($value, index($value, $array_value));
+            $output_list: append($output_list, #{$final_line_height * $temp});
+        }
+
+        #{$attribute}: #{$output_list};
+    }
 
     @if ($use_rem_values == true) {
-        @if ($normalize_html == true) {
-            font-size: ($font_size / $base_font_size_mobile) * ($base_line_height_mobile / $base_font_size_mobile) * $normalize_font_value * 1rem;
-            line-height: stripUnit($base_line_height_mobile / $normalize_line_height_value) * $how_many_lines * 1rem;
-        } @else {
-            font-size: ($font_size / $base_font_size_mobile) * ($base_line_height_mobile / $base_font_size_mobile) * 1rem;
-            line-height: $base_line_height_mobile / $base_font_size_mobile * $how_many_lines * 1rem;
+        @if (type_of($value) == number) {
+            #{$attribute}: $value * $final_line_height / $base_font_size * 1rem;
+        }
+        @if (type_of($value) == list) {
+            $output_list: ();
+            @each $array_value in $value {
+                $temp: nth($value, index($value, $array_value));
+                $output_list: append($output_list, #{$temp * $final_line_height / $base_font_size * 1rem});
+            }
+
+            #{$attribute}: #{$output_list};
+        }
+    }
+}
+
+@mixin setPaddingAndBorder($mq, $padding_values, $border_values) {
+    $final_font_size: getMqValue($mq, font-size);
+    $final_line_height: getMqValue($mq, line-height);
+
+    $border_width: nth($border_values, 1);
+    $border_style: nth($border_values, 2);
+    $border_color: nth($border_values, 3);
+
+
+    @if (length($padding_values) != length($border_width)) {
+        @warn 'padding values and border width are not of same length'
+    } @else {
+        border: {
+            width: unquote(str-replace(quote($border_width), ',', ''));
+            style: unquote(str-replace(quote($border_style), ',', ''));
+            color: unquote(str-replace(quote($border_color), ',', ''));
+        }
+
+
+        $padding_px: ();
+        @each $side in $border_width {
+            $index: index($border_width, $side);
+
+            $padding_value: 0;
+            @if (nth($padding_values, $index) != 0) {
+                $padding_value: nth($padding_values, $index) * $final_line_height - $side;
+            }
+
+            $padding_px: append($padding_px, $padding_value);
+        }
+        padding: $padding_px;
+
+        @if ($use_rem_values == true) {
+            $padding_rem: ();
+
+            @each $side in $border_width {
+                $index: index($border_width, $side);
+
+                $padding_value: 0;
+                @if (nth($padding_values, $index) != 0) {
+
+                    @if ($normalize_html == true) {
+                        $padding_value: ($final_line_height / $base_font_size) * (nth($padding_values, $index) * $final_line_height - nth($border_width, $index)) / $final_line_height * 1rem;
+                    } @else {
+                        $padding_value: stripUnit((nth($padding_values, $index) * $final_line_height - $side) / $normalize_font_value / $normalize_line_height_value)  * 1rem;
+                    }
+                }
+
+                $padding_rem: append($padding_rem, $padding_value);
+            }
+
+            padding: $padding_rem;
         }
     }
 }
