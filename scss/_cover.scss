@@ -1,0 +1,57 @@
+$grid_el_thick: 1px;
+
+$cover_font_size_mobile: 20px !default; // The default font size for all text in pixels
+$cover_line_height_mobile: 30px !default; // The distance between text coverlines (vertical rhythm) in pixels.
+$cover_el_rows_mobile: 7;
+
+$cover_font_size_tablet: 35px !default;
+$cover_line_height_tablet: 45px !default;
+$cover_el_rows_tablet: 11;
+
+$cover_font_size_desktop: 50px !default;
+$cover_line_height_desktop: 60px !default;
+$cover_el_rows_desktop: 15;
+
+.cover {
+    height: 100vh;
+    box-sizing: border-box;
+    background-size: cover;
+}
+
+@include bpMaxMobile() {
+    .cover {
+        @include setVHRhytm($cover_el_rows_mobile, $grid_el_thick);
+        @include setVHSpacing(mobile, padding, $cover_el_rows_mobile, 1);
+        @include setVHSpacing(mobile, margin-bottom, $cover_el_rows_mobile, 1);
+        background-image: url("https://picsum.photos/600/600?blur");
+
+        h1 {
+            @include setVHFontSize($cover_font_size_tablet, $cover_el_rows_mobile, 1);
+        }
+    }
+}
+
+@include bpOnTablet() {
+    .cover {
+        @include setVHRhytm($cover_el_rows_tablet, $grid_el_thick);
+        @include setVHSpacing(tablet, padding, $cover_el_rows_tablet, 1);
+        background-image: url("https://picsum.photos/1024/768?blur");
+        @include setVHSpacing(mobile, margin-bottom, $cover_el_rows_tablet, 1);
+
+        h1 {
+            @include setVHFontSize($cover_font_size_tablet, $cover_el_rows_tablet, 1);
+        }
+    }
+}
+@include bpMinDesktop() {
+    .cover {
+        @include setVHRhytm($cover_el_rows_desktop, $grid_el_thick);
+        @include setVHSpacing(desktop, padding, $cover_el_rows_desktop, 1);
+        background-image: url("https://picsum.photos/1920/1080?blur");
+        @include setVHSpacing(mobile, margin-bottom, $cover_el_rows_desktop, 1);
+
+        h1 {
+            @include setVHFontSize($cover_font_size_desktop, $cover_el_rows_desktop, 2);
+        }
+    }
+}

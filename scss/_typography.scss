@@ -32,21 +32,21 @@
 }
 
 @include bpMinDesktop() {
-    h1 { @include setRhythm(desktop, 84px, 2); }
+    h1 { @include setRhythm(desktop, 84px, 3); }
     h2 { @include setRhythm(desktop, 72px, 2); }
     h3 { @include setRhythm(desktop, 60px, 2); }
     h4 { @include setRhythm(desktop, 48px, 2); }
-    h5 { @include setRhythm(desktop, 36px, 2); }
+    h5 { @include setRhythm(desktop, 36px, 1); }
     h6 { @include setRhythm(desktop, 24px, 1); }
 
     p {
         @include setRhythm(desktop, 24px, 1);
-        //@include setSpacing(desktop, margin, (0,0,1));
-        //@include setSpacing(desktop, padding, (1, 0, 1));
+        //@include setSpacing(desktop, margin, (1,0,0));
+        //@include setSpacing(desktop, padding, (0,0,1));
         @include setPaddingAndBorder(
             desktop,
             (0, 0, 1),
-            ((0, 0, 2px), solid, red)
+            ((0, 0, 5px), solid, red)
         );
     }
 }

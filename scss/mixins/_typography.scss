@@ -152,3 +152,26 @@
         }
     }
 }
+
+@mixin setVHFontSize($font_size, $cover_el_rows, $how_many_lines: 1) {
+    font-size: $font_size;
+    line-height: 100 / $cover_el_rows * $how_many_lines * 1vh;
+}
+
+@mixin setVHRhytm($how_many_rows, $line_thickness) {
+    @if ($debugCoverVerticalRhythm == true) {
+        #{$debugCoverElement} {
+            background: repeating-linear-gradient(
+                            0deg,
+                            black,
+                            black $line_thickness,
+                            white $line_thickness,
+                            white #{100/$how_many_rows}vh /* determines size */
+            );
+        }
+    }
+}
+
+@mixin setVHSpacing($mq, $attribute, $how_many_rows, $value) {
+    #{$attribute}: $how_many_rows * $value * 1vh;
+}
