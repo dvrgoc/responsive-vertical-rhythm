@@ -27,7 +27,7 @@
             @return $base_line_height_mobile
         }
     }
-    @if($mq == tablet) {
+    @if ($mq == tablet) {
         @if ($attribute == font-size) {
             @return $base_font_size_tablet
         }
@@ -35,7 +35,7 @@
             @return $base_line_height_tablet
         }
     }
-    @if($mq == desktop) {
+    @if ($mq == desktop) {
         @if ($attribute == font-size) {
             @return $base_font_size_desktop
         }
@@ -105,7 +105,6 @@
     $border_style: nth($border_values, 2);
     $border_color: nth($border_values, 3);
 
-
     @if (length($padding_values) != length($border_width)) {
         @warn 'padding values and border width are not of same length'
     } @else {
@@ -114,7 +113,6 @@
             style: unquote(str-replace(quote($border_style), ',', ''));
             color: unquote(str-replace(quote($border_color), ',', ''));
         }
-
 
         $padding_px: ();
         @each $side in $border_width {
