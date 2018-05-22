@@ -10,19 +10,19 @@
 
 
 @include bpMaxMobile() {
-    body > div {
+    .headings {
         display: flex;
         flex-wrap: wrap;
     }
 
-    body > div > * {
+    .headings > * {
         flex: 50%;
         text-align: center;
     }
 }
 
 @include bpMinTablet() {
-    body > div {
+    .headings {
         display: flex;
         justify-content: space-around;
         align-items: center;

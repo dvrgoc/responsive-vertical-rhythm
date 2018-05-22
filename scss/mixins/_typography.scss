@@ -158,7 +158,7 @@
     line-height: 100 / $cover_el_rows * $how_many_lines * 1vh;
 }
 
-@mixin setVHRhytm($how_many_rows, $line_thickness) {
+@mixin setVHRhythm($how_many_rows, $line_thickness) {
     @if ($debugCoverVerticalRhythm == true) {
         #{$debugCoverElement} {
             background: repeating-linear-gradient(
@@ -166,12 +166,34 @@
                             black,
                             black $line_thickness,
                             white $line_thickness,
-                            white #{100/$how_many_rows}vh /* determines size */
+                            white 100/$how_many_rows * 1vh /* determines size */
             );
         }
     }
 }
 
-@mixin setVHSpacing($mq, $attribute, $how_many_rows, $value) {
-    #{$attribute}: $how_many_rows * $value * 1vh;
+@mixin setVHSpacing($mq, $attribute, $how_many_rows) {
+    $total_rows: 0;
+    @if ($mq == mobile) {
+        $total_rows: $cover_el_rows_mobile;
+    } @else if ($mq == tablet) {
+        $total_rows: $cover_el_rows_tablet;
+    } @else if ($mq == desktop) {
+        $total_rows: $cover_el_rows_desktop;
+    } @else {
+        @error 'incorrect argument "$mq" specified #{$mq}'
+    }
+
+    @if (type_of($how_many_rows) == number) {
+        #{$attribute}: #{100/$total_rows * $how_many_rows * 1vh};
+    }
+    @if (type_of($how_many_rows) == list) {
+        $output_list: ();
+        @each $array_value in $how_many_rows {
+            $temp: nth($how_many_rows, index($how_many_rows, $array_value));
+            $output_list: append($output_list, #{100/$total_rows * $array_value * 1vh});
+        }
+
+        #{$attribute}: #{$output_list};
+    }
 }
