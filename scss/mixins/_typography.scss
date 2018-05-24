@@ -1,3 +1,48 @@
+@mixin bp($keyword, $bp1, $bp2: null) {
+    $mq_term: '';
+    @if ($keyword == min) or ($keyword == max) {
+        $mq_term: 'all and (#{$keyword}-width: #{$bp1})';
+    } @else if ($keyword == between) {
+        $mq_term: 'all and (min-width: #{$bp1}) and (max-width: #{$bp1})';
+    } @else {
+        @error 'invalid mq keyword: '#{$keyword}
+    }
+
+    @media #{$mq_term} {
+        @content
+    }
+}
+
+@mixin bpMaxMobile() {
+    @include bp(max, $bp_phone_end) {
+        @content
+    }
+}
+
+@mixin bpMinTablet() {
+    @include bp(min, $bp_tablet_start) {
+        @content
+    }
+}
+
+@mixin bpOnTablet() {
+    @include bp(between, $bp_tablet_start, $bp_tablet_end)  {
+        @content
+    }
+}
+
+@mixin bpMaxTablet() {
+    @include bp(max, $bp_tablet_end) {
+        @content
+    }
+}
+
+@mixin bpMinDesktop() {
+    @include bp(min, $bp_desktop_start) {
+        @content
+    }
+}
+
 // https://css-tricks.com/snippets/sass/strip-unit-function/
 @function stripUnit($value) {
     @if type-of($value) == 'number' and not unitless($value) {
@@ -193,5 +238,29 @@
         }
 
         #{$attribute}: #{$output_list};
+    }
+}
+
+@mixin showVerticalRhythmOn($selector) {
+    #{$selector} {
+        background: {
+            image: linear-gradient(to bottom,
+                    black 2.5%,
+                    white 2.5%,
+                    white 97.5%,
+                    black 97.5%
+            );
+            position: left top;
+        }
+
+        @include bpMaxPhone() {
+            background-size: 100% $base_line_height_mobile;
+        }
+        @include bpOnTablet() {
+            background-size: 100% $base_line_height_tablet;
+        }
+        @include bpMinDesktop() {
+            background-size: 100% $base_line_height_desktop;
+        }
     }
 }
