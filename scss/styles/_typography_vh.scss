@@ -1,0 +1,31 @@
+@include bpMaxViewportVerticalSmall() {
+    h1 {
+        @include setVHFontSize(1.5, $cover_el_rows_mobile, 3);
+        @include setVHSpacing(mobile, padding, 1);
+    }
+    p {
+        @include setVHFontSize(0.75, $cover_el_rows_mobile, 1);
+        @include setVHSpacing(mobile, padding, (1, 0.5));
+    }
+}
+
+@include bpOnViewportVerticalMedium() {
+    h1 {
+        @include setVHFontSize(1.5, $cover_el_rows_tablet, 3);
+        @include setVHSpacing(tablet, padding, 1);
+    }
+    p {
+        @include setVHFontSize(0.5, $cover_el_rows_tablet, 1);
+        @include setVHSpacing(tablet, padding, (1, 0.5));
+    }
+}
+@include bpMinViewportVerticalLarge() {
+    h1 {
+        @include setVHFontSize(1.5, $cover_el_rows_desktop, 3);
+        @include setVHSpacing(desktop, padding, 1);
+    }
+    p {
+        @include setVHFontSize(0.5, $cover_el_rows_desktop, 1);
+        @include setVHSpacing(desktop, padding, 1);
+    }
+}

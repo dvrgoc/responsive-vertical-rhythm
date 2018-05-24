@@ -1,0 +1,18 @@
+$use_rem_values: true;
+$normalize_html: true;
+
+// default browser font size
+$font_size_default: 16px;
+// scale everything to 10px
+$font_size_scaled: 10px;
+
+/////////
+$base_font_size: if($normalize_html, $font_size_scaled, $font_size_default);
+$html_font_size: if($normalize_html, $font_size_scaled/$font_size_default*100%, 1);
+// (10px / 16px) * 100% = 62.5%
+
+// normalize html
+$normalize_html_value: if($normalize_html, $base_font_size, 1);
+$normalize_font_value: $font_size_default / $font_size_scaled;
+$normalize_line_height_value: $font_size_scaled / 1px;
+

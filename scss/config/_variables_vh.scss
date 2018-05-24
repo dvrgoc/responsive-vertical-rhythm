@@ -1,0 +1,24 @@
+$debugVRVerticalRhythm: true;
+$debugVRElement: 'html';
+
+$bp_viewport_height_small_end: 399px;
+
+$bp_viewport_height_medium_start: $bp_viewport_height_small_end + 1;
+$bp_viewport_height_medium_end: 799px;
+
+$bp_viewport_height_large_start: $bp_viewport_height_medium_end + 1;
+
+$grid_el_thick: 0.4vh;
+
+$cover_font_size_mobile: 28px !default; // The default font size for all text in pixels
+$cover_line_height_mobile: 36px !default; // The distance between text coverlines (vertical rhythm) in pixels.
+$cover_el_rows_mobile: 10;
+
+$cover_font_size_tablet: 35px !default;
+$cover_line_height_tablet: 45px !default;
+$cover_el_rows_tablet: 20;
+
+$cover_font_size_desktop: 50px !default;
+$cover_line_height_desktop: 60px !default;
+$cover_el_rows_desktop: 25;
+/* breakpoint variables - start */

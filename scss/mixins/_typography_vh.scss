@@ -1,0 +1,80 @@
+@mixin bpMaxViewportVerticalSmall() {
+    @include bp(max-height, $bp_viewport_height_small_end) {
+        @content
+    }
+}
+
+@mixin bpOnViewportVerticalMedium() {
+    @include bp(between-height, $bp_viewport_height_medium_start, $bp_viewport_height_medium_end) {
+        @content
+    }
+}
+
+@mixin bpMinViewportVerticalLarge() {
+    @include bp(min-height, $bp_viewport_height_large_start) {
+        @content
+    }
+}
+
+@mixin setVHRhythm($debugVRElement) {
+    #{$debugVRElement} {
+        @include bpMaxViewportVerticalSmall() {
+            background: repeating-linear-gradient(
+                            to bottom,
+                            black 0,
+                            white $grid_el_thick/2,
+                            white 100/$cover_el_rows_mobile * 1vh - $grid_el_thick/2,
+                            black 100/$cover_el_rows_mobile * 1vh
+            );
+        }
+        @include bpOnViewportVerticalMedium() {
+            background: repeating-linear-gradient(
+                            to bottom,
+                            black 0,
+                            white $grid_el_thick/2,
+                            white 100/$cover_el_rows_tablet * 1vh - $grid_el_thick/2,
+                            black 100/$cover_el_rows_tablet * 1vh
+            );
+        }
+        @include bpMinViewportVerticalLarge() {
+            background: repeating-linear-gradient(
+                to bottom,
+                black 0,
+                white $grid_el_thick/2,
+                white 100/$cover_el_rows_desktop * 1vh - $grid_el_thick/2,
+                black 100/$cover_el_rows_desktop * 1vh
+            );
+        }
+    }
+}
+
+@mixin setVHSpacing($mq, $attribute, $how_many_rows) {
+    $total_rows: 0;
+    @if ($mq == mobile) {
+        $total_rows: $cover_el_rows_mobile;
+    } @else if ($mq == tablet) {
+        $total_rows: $cover_el_rows_tablet;
+    } @else if ($mq == desktop) {
+        $total_rows: $cover_el_rows_desktop;
+    } @else {
+        @error 'incorrect argument "$mq" specified #{$mq}'
+    }
+
+    @if (type_of($how_many_rows) == number) {
+        #{$attribute}: #{100/$total_rows * $how_many_rows * 1vh};
+    }
+    @if (type_of($how_many_rows) == list) {
+        $output_list: ();
+        @each $array_value in $how_many_rows {
+            $temp: nth($how_many_rows, index($how_many_rows, $array_value));
+            $output_list: append($output_list, #{100/$total_rows * $array_value * 1vh});
+        }
+
+        #{$attribute}: #{$output_list};
+    }
+}
+
+@mixin setVHFontSize($font_size, $cover_el_rows, $how_many_lines: 1) {
+    line-height: (100 / $cover_el_rows) * $how_many_lines * 1vh;
+    font-size: (100 / $cover_el_rows) * $font_size * 1vh;
+}

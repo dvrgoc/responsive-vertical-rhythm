@@ -1,14 +1,5 @@
-@mixin showVerticalRhythmOn($selector) {
-    #{$selector} {
-        background: {
-            image: linear-gradient(to bottom, white 95%, black 5%);
-            position: left top;
-        }
-
-        @include bpMaxMobile()  { background-size: 100% $base_line_height_mobile; }
-        @include bpOnTablet()   { background-size: 100% $base_line_height_tablet; }
-        @include bpMinDesktop() { background-size: 100% $base_line_height_desktop; }
-    }
+@if ($debugVerticalRhythm == true) {
+    @include showVerticalRhythmOn($debugElement);
 }
 
 @include bpMaxMobile() {

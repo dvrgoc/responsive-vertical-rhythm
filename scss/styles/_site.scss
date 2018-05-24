@@ -1,0 +1,19 @@
+@include bpMaxMobile() {
+    .headings {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .headings > * {
+        flex: 50%;
+        text-align: center;
+    }
+}
+
+@include bpMinTablet() {
+    .headings {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}

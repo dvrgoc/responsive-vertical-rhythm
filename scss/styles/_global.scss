@@ -1,0 +1,15 @@
+@if ($normalize_html == true) {
+    html {
+        font-size: $html_font_size;
+    }
+}
+
+.fira {
+    font-family: 'Fira Sans';
+}
+.lobster {
+    font-family: 'Lobster';
+}
+.roboto {
+    font-family: 'Roboto Slab';
+}

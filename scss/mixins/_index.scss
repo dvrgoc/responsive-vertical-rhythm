@@ -1,0 +1,19 @@
+@mixin bp($keyword, $bp1, $bp2: null) {
+    $mq_term: '';
+    @if ($keyword == min-width) or
+        ($keyword == max-width) or
+        ($keyword == min-height) or
+        ($keyword == max-height) {
+        $mq_term: 'all and (#{$keyword}: #{$bp1})';
+    } @else if ($keyword == between-width) {
+        $mq_term: 'all and (min-width: #{$bp1}) and (max-width: #{$bp2})';
+    } @else if ($keyword == between-height) {
+        $mq_term: 'all and (min-height: #{$bp1}) and (max-height: #{$bp2})';
+    } @else {
+        @error 'invalid mq keyword: #{$keyword}';
+    }
+
+    @media #{$mq_term} {
+        @content
+    }
+}
