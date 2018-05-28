@@ -23,7 +23,7 @@
 }
 
 @include bpMinDesktop() {
-    h1 { @include setRhythm(desktop, 84px, 2); }
+    h1 { @include setRhythm(desktop, 84px, 3); }
     h2 { @include setRhythm(desktop, 72px, 2); }
     h3 { @include setRhythm(desktop, 60px, 2); }
     h4 { @include setRhythm(desktop, 48px, 2); }

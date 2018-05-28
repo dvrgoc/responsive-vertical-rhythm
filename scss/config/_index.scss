@@ -16,3 +16,5 @@ $normalize_html_value: if($normalize_html, $base_font_size, 1);
 $normalize_font_value: $font_size_default / $font_size_scaled;
 $normalize_line_height_value: $font_size_scaled / 1px;
 
+$grid_color_line: black;
+$grid_color_background: white;
