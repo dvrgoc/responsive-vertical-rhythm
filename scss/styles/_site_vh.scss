@@ -1,7 +1,3 @@
-@if ($debugVRVerticalRhythm == true) {
-    @include setVHRhythm($debugVRElement);
-}
-
 html {
     min-height: 100%;
 }

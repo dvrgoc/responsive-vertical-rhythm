@@ -1,3 +1,6 @@
+@if ($debugVRVerticalRhythm == true) {
+    @include setVHRhythm($debugVRElement);
+}
 @include bpMaxViewportVerticalSmall() {
     h1 {
         @include setFontSizeVH($viewport_rows_mobile, 3, 1.5);
@@ -19,10 +22,11 @@
         @include setSpacingVH(tablet, padding, (1, 0.5));
     }
 }
+
 @include bpMinViewportVerticalLarge() {
     h1 {
         @include setFontSizeVH($viewport_rows_desktop, 3, 1.5);
-        @inclu setVHSVHpacing(desktop, padding, 1);
+        @include setVHSVHpacing(desktop, padding, 1);
     }
     p {
         @include setFontSizeVH($viewport_rows_desktop, 1, 0.5);
