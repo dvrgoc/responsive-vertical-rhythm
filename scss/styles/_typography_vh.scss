@@ -26,7 +26,7 @@
 @include bpMinViewportVerticalLarge() {
     h1 {
         @include setFontSizeVH($viewport_rows_desktop, 3, 1.5);
-        @include setVHSVHpacing(desktop, padding, 1);
+        @include setSpacingVH(desktop, padding, 1);
     }
     p {
         @include setFontSizeVH($viewport_rows_desktop, 1, 0.5);

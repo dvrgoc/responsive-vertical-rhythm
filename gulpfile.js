@@ -27,7 +27,7 @@ gulp.task('styles', function() {
 //watch
 gulp.task('watch', function () {
     // Watch .scss files
-    gulp.watch('scss/**/*.scss', ['styles']);
+    gulp.watch('scss/**/*.scss', gulp.series(['styles']));
 });
 
 gulp.task('browserSync', function () {
@@ -38,4 +38,4 @@ gulp.task('browserSync', function () {
     });
 });
 
-gulp.task('default', ['styles', 'watch', 'browserSync']);
+gulp.task('default', gulp.parallel(['styles', 'watch', 'browserSync']));
