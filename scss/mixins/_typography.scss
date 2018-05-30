@@ -127,7 +127,7 @@
     }
 }
 
-@mixin setPaddingAndBorder($mq, $padding_values, $border_values) {
+@mixin setBorderedSpacing($mq, $padding_values, $border_values) {
     $final_font_size: getMqValue($mq, font-size);
     $final_line_height: getMqValue($mq, line-height);
 

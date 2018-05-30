@@ -34,7 +34,7 @@
         @include setRhythm(desktop, 24px, 1);
         //@include setSpacing(desktop, margin, (1,0,0));
         //@include setSpacing(desktop, padding, (0,0,1));
-        @include setPaddingAndBorder(
+        @include setBorderedSpacing(
             desktop,
             (0, 1, 1),
             ((0, 0, 5px), solid, red)
