@@ -9,12 +9,13 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "browser-sync": "^2.26.7",
+    "browser-sync": "^2.26.10",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5"
+    "gulp-sass": "^4.1.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "node-sass": "^4.14.1"
   }
 }
