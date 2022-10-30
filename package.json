@@ -14,9 +14,9 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^2.6.5",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.3",
     "object-path": ">=0.11.8"
   }
 }
